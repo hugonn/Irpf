@@ -133,7 +133,7 @@ public class JanelaPrincipal extends JFrame {
 		JButton btnDeclarar = new JButton("Declarar");
 		btnDeclarar.setBounds(317, 220, 89, 23);
 		contentPane.add(btnDeclarar);
-		
+		 
 		cmbDec.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				if(arg0.getItem().equals("Declaração Completa")) {
