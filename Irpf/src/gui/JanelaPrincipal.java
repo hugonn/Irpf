@@ -9,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class JanelaPrincipal extends JFrame {
 
@@ -41,7 +44,7 @@ public class JanelaPrincipal extends JFrame {
 	public JanelaPrincipal() {
 		setTitle("IRPF 2018 ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 361);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -52,6 +55,7 @@ public class JanelaPrincipal extends JFrame {
 		contentPane.add(lblQualOTipo);
 		
 		JComboBox cmbDec = new JComboBox();
+		
 		cmbDec.setBounds(148, 29, 181, 20);
 		cmbDec.addItem("Declaração Simplificada");
 		cmbDec.addItem("Declaração Completa");
@@ -125,6 +129,32 @@ public class JanelaPrincipal extends JFrame {
 		tfRendimentos.setBounds(148, 178, 152, 20);
 		contentPane.add(tfRendimentos);
 		tfRendimentos.setColumns(10);
+		
+		JButton btnDeclarar = new JButton("Declarar");
+		btnDeclarar.setBounds(317, 220, 89, 23);
+		contentPane.add(btnDeclarar);
+		
+		cmbDec.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				if(arg0.getItem().equals("Declaração Completa")) {
+					lblIdade.setVisible(true);
+					tfIdade.setVisible(true);
+					lblNmeroDependentes.setVisible(true);
+					cmbNumDep.setVisible(true);
+					setBounds(100, 100, 450, 361);
+					btnDeclarar.setBounds(317, 275, 89, 23);
+				}else {
+					setBounds(100, 100, 450, 301);
+					btnDeclarar.setBounds(317, 220, 89, 23);
+					lblIdade.setVisible(false);
+					tfIdade.setVisible(false);
+					lblNmeroDependentes.setVisible(false);
+					cmbNumDep.setVisible(false);
+				}
+			}
+		});
+		
+		
 		
 
 	}
