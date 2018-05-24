@@ -7,9 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controller.ControladorPrincipal;
+import model.ListaPessoaImposto;
 import model.Pessoa;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -57,6 +60,8 @@ public class JanelaPrincipal extends JFrame {
 		contentPane.setLayout(null);
 		
 		ArrayList<Pessoa> lstPessoa = new ArrayList<Pessoa>();
+		ControladorPrincipal cp = new ControladorPrincipal();
+		ListaPessoaImposto lstPesImp = new ListaPessoaImposto();
 		
 		JLabel lblQualOTipo = new JLabel("Declara\u00E7\u00E3o:");
 		lblQualOTipo.setBounds(56, 32, 82, 14);
@@ -163,9 +168,41 @@ public class JanelaPrincipal extends JFrame {
 			}
 		});
 		
+		JanelaPrincipal jp = this;
 		
 		btnDeclarar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				if(tfNome.getText().isEmpty() || tfCPF.getText().isEmpty() || tfRendimentos.getText().isEmpty() || tfPrev.getText().isEmpty()) {
+					
+					JOptionPane.showMessageDialog(jp, "Preencha todos os campos corretamente!");
+				
+				} else {
+					
+					if(cmbDec.getSelectedItem() == "Declaração Completa") {
+						
+						if(tfIdade.getText().isEmpty()) {
+							
+							JOptionPane.showMessageDialog(jp, "Digite sua Idade!");
+						
+						}else {
+							Pessoa p = cp.criaPessoaCompleta(tfNome.getText(), tfCPF.getText(), Float.parseFloat(tfPrev.getText()), Float.parseFloat(tfRendimentos.getText()),Integer.parseInt(tfIdade.getText()),cmbNumDep.getSelectedIndex());
+							cp.calculaImpostoCompleto(p);
+							lstPesImp.addPessoa(p);
+						}
+						
+					}else {
+						Pessoa p = cp.criaPessoaSimples(tfNome.getText(), tfCPF.getText(), Float.parseFloat(tfPrev.getText()), Float.parseFloat(tfRendimentos.getText()));
+						cp.calculaImpostoSimples(p);
+						lstPesImp.addPessoa(p);
+						
+						
+					}
+				
+				
+				}
+				
+				
 				
 			}
 		});
