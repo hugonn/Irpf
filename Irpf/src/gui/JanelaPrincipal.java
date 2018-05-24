@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.awt.event.ItemEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class JanelaPrincipal extends JFrame {
 
@@ -137,6 +139,7 @@ public class JanelaPrincipal extends JFrame {
 		tfRendimentos.setColumns(10);
 		
 		JButton btnDeclarar = new JButton("Declarar");
+		
 		btnDeclarar.setBounds(317, 220, 89, 23);
 		contentPane.add(btnDeclarar);
 		  
@@ -157,6 +160,13 @@ public class JanelaPrincipal extends JFrame {
 					lblNmeroDependentes.setVisible(false);
 					cmbNumDep.setVisible(false);
 				}
+			}
+		});
+		
+		
+		btnDeclarar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
 			}
 		});
 		
