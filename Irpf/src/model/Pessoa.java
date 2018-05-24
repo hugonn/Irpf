@@ -7,7 +7,16 @@ public class Pessoa {
 	private int numDep;
 	private float contPrevSoc;
 	private float totRend; 
+	private float valorImposto;
 	
+	public float getValorImposto() {
+		return valorImposto;
+	}
+
+	public void setValorImposto(float valorImposto) {
+		this.valorImposto = valorImposto;
+	}
+
 	public Pessoa(String nome, String cpf, float contPrevSoc, float totRend) {
 		this.nome = nome;
 		this.cpf = cpf;

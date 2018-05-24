@@ -6,11 +6,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Pessoa;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.awt.event.ItemEvent;
 
 public class JanelaPrincipal extends JFrame {
@@ -49,6 +53,8 @@ public class JanelaPrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		ArrayList<Pessoa> lstPessoa = new ArrayList<Pessoa>();
 		
 		JLabel lblQualOTipo = new JLabel("Declara\u00E7\u00E3o:");
 		lblQualOTipo.setBounds(56, 32, 82, 14);
