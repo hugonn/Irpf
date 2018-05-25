@@ -21,18 +21,18 @@ class ControladorPrincipalTest {
 	public void calculaCadastraImpostoCompletoTest() {
 		this.cp = new ControladorPrincipal();
 		Pessoa p = new Pessoa("Bruno", "00000000000", 123456, 1111111, 66, 4);
-		float experado = (float)12222.230625; // 44444.475; // 987655;
+		float esperado = (float)12222.230625; // 44444.475; // 987655;
 		this.arrayPessoa = this.cp.calculaCadastraImpostoCompleto(p, null);
-		assertEquals(experado, p.getValorImposto());
+		assertEquals(esperado, p.getValorImposto());
 	}
 	
 	@Test
 	public void calculaCadastraImpostoSimplesTest() {
 		this.cp = new ControladorPrincipal();
 		Pessoa p = new Pessoa("Bruno", "00000000000", 123456, 1111111);
-		float experado = (float)258024.86875; // 44444.475; // 987655;
+		float esperado = (float)258024.86875; // 44444.475; // 987655;
 		this.arrayPessoa = this.cp.calculaCadastraImpostoSimples(p, null);
-		assertEquals(experado, p.getValorImposto());
+		assertEquals(esperado, p.getValorImposto());
 	}
 	
 	@Test
