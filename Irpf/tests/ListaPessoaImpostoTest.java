@@ -6,15 +6,15 @@ import model.ListaPessoaImposto;
 
 class ListaPessoaImpostoTest {
 
-	private static ListaPessoaImposto lpi
+	private static ListaPessoaImposto lpi;
 	
 	@Test
-	public void static addPessoaTest() {
+	public static void addPessoaTest() {
 		
 	}
 	
 	@Test
-	public void static getPessoaImpostoTest() {
+	public static void getPessoaImpostoTest() {
 		
 	}
 }

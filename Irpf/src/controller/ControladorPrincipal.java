@@ -49,7 +49,7 @@ public class ControladorPrincipal {
 			float baseCalculo = p.getTotRend() - p.getContPrevSoc();
 			float imposto;
 			
-			baseCalculo +=  (baseCalculo * (5/100));
+			baseCalculo -=  (baseCalculo * (5/100));
 			
 			if(baseCalculo < 24000) {
 				imposto= (baseCalculo*(15/100));

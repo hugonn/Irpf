@@ -6,75 +6,84 @@ import model.Pessoa;
 
 class PessoaTest {
 
-	private static Pessoa p;
+	private Pessoa p;
 	
 	@Test
-	public void static getValorImpostoTest() {
+	public void getValorImpostoTest() {
+		this.p = new Pessoa("Nome", "cpf", 32333, 4444442);
+		int experado = 10000;
+		p.setValorImposto(10000);
+		float valor = p.getValorImposto();
+		assertEquals(experado, valor);
+	}
+	
+	@Test
+	public void setValorImpostoTest() {
+		this.p = new Pessoa("Nome", "cpf", 32333, 4444442);
+		int experado = 10000;
+		p.setValorImposto(10000);
+		float valor = p.getValorImposto();
+		assertEquals(experado, valor);
 		
 	}
 	
 	@Test
-	public void static setValorImpostoTest() {
+	public void getNomeTest() {
 		
 	}
 	
 	@Test
-	public void static getNomeTest() {
+	public void setNomeTest() {
 		
 	}
 	
 	@Test
-	public void static setNomeTest() {
+	public void getCpfTest() {
 		
 	}
 	
 	@Test
-	public void static getCpfTest() {
+	public void setCpfTest() {
 		
 	}
 	
 	@Test
-	public void static setCpfTest() {
+	public void getIdadeTest() {
 		
 	}
 	
 	@Test
-	public void static getIdadeTest() {
+	public void setIdadeTest() {
 		
 	}
 	
 	@Test
-	public void static setIdadeTest() {
+	public void getNumDepTest() {
 		
 	}
 	
 	@Test
-	public void static getNumDepTest() {
+	public void setNumDepTest() {
 		
 	}
 	
 	@Test
-	public void static setNumDepTest() {
+	public void getContPrevSocTest() {
 		
 	}
 	
 	@Test
-	public void static getContPrevSocTest() {
+	public void setContPrevSocTest() {
 		
 	}
 	
 	@Test
-	public void static setContPrevSocTest() {
+	public void getTotRendTest() {
 		
 	}
 	
 	@Test
-	public void static getTotRendTest() {
-		
-	}
-	
-	@Test
-	public void static setTotRendTest() {
+	public void setTotRendTest() {
 		
 	}
 }
