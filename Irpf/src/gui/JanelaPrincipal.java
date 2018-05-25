@@ -30,7 +30,9 @@ public class JanelaPrincipal extends JFrame {
 	private JTextField tfIdade;
 	private JTextField tfPrev;
 	private JTextField tfRendimentos;
-
+	float calculoImp ;
+	ControladorPrincipal cp;
+	ListaPessoaImposto lstPesImp;
 	/**
 	 * Launch the application.
 	 */
@@ -53,15 +55,14 @@ public class JanelaPrincipal extends JFrame {
 	public JanelaPrincipal() {
 		setTitle("IRPF 2018 ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 475, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		ArrayList<Pessoa> lstPessoa = new ArrayList<Pessoa>();
-		ControladorPrincipal cp = new ControladorPrincipal();
-		ListaPessoaImposto lstPesImp = new ListaPessoaImposto();
+		cp = new ControladorPrincipal();
+		lstPesImp = new ListaPessoaImposto();
 		
 		JLabel lblQualOTipo = new JLabel("Declara\u00E7\u00E3o:");
 		lblQualOTipo.setBounds(56, 32, 82, 14);
@@ -145,8 +146,13 @@ public class JanelaPrincipal extends JFrame {
 		
 		JButton btnDeclarar = new JButton("Declarar");
 		
-		btnDeclarar.setBounds(317, 220, 89, 23);
+		btnDeclarar.setBounds(317, 220, 132, 23);
 		contentPane.add(btnDeclarar);
+		
+		JButton btnListarPessoas = new JButton("Listar Pessoas");
+		
+		btnListarPessoas.setBounds(317, 177, 132, 23);
+		contentPane.add(btnListarPessoas);
 		  
 		cmbDec.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
@@ -155,11 +161,11 @@ public class JanelaPrincipal extends JFrame {
 					tfIdade.setVisible(true);
 					lblNmeroDependentes.setVisible(true);
 					cmbNumDep.setVisible(true);
-					setBounds(100, 100, 450, 361);
-					btnDeclarar.setBounds(317, 275, 89, 23);
+					setBounds(100, 100, 475, 361);
+					btnDeclarar.setBounds(317, 275, 132, 23);
 				}else {
-					setBounds(100, 100, 450, 301);
-					btnDeclarar.setBounds(317, 220, 89, 23);
+					setBounds(100, 100, 475, 301);
+					btnDeclarar.setBounds(317, 220, 132, 23);
 					lblIdade.setVisible(false);
 					tfIdade.setVisible(false);
 					lblNmeroDependentes.setVisible(false);
@@ -170,9 +176,19 @@ public class JanelaPrincipal extends JFrame {
 		
 		JanelaPrincipal jp = this;
 		
+		btnListarPessoas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String lista = cp.listarPessoaImposto(lstPesImp);
+				JOptionPane.showMessageDialog(jp ,lista);
+			}
+		});
+		
+		
 		btnDeclarar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				
+			
 				if(tfNome.getText().isEmpty() || tfCPF.getText().isEmpty() || tfRendimentos.getText().isEmpty() || tfPrev.getText().isEmpty()) {
 					
 					JOptionPane.showMessageDialog(jp, "Preencha todos os campos corretamente!");
@@ -187,14 +203,12 @@ public class JanelaPrincipal extends JFrame {
 						
 						}else {
 							Pessoa p = cp.criaPessoaCompleta(tfNome.getText(), tfCPF.getText(), Float.parseFloat(tfPrev.getText()), Float.parseFloat(tfRendimentos.getText()),Integer.parseInt(tfIdade.getText()),cmbNumDep.getSelectedIndex());
-							cp.calculaImpostoCompleto(p);
-							lstPesImp.addPessoa(p);
+							lstPesImp = cp.calculaCadastraImpostoCompleto(p,lstPesImp);
 						}
 						
 					}else {
 						Pessoa p = cp.criaPessoaSimples(tfNome.getText(), tfCPF.getText(), Float.parseFloat(tfPrev.getText()), Float.parseFloat(tfRendimentos.getText()));
-						cp.calculaImpostoSimples(p);
-						lstPesImp.addPessoa(p);
+						lstPesImp = cp.calculaCadastraImpostoSimples(p,lstPesImp);
 						
 						
 					}
@@ -202,7 +216,12 @@ public class JanelaPrincipal extends JFrame {
 				
 				}
 				
-				
+				tfNome.setText(""); 
+				tfCPF.setText(""); 
+				tfPrev.setText(""); 
+				tfRendimentos.setText("");
+				tfIdade.setText("");
+				cmbNumDep.setSelectedIndex(0);
 				
 			}
 		});
